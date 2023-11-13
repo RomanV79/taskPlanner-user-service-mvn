@@ -1,0 +1,25 @@
+app:
+  rabbit:
+    queue: EMAIL_SENDING_TASKS
+    exchange: email
+    routing_key: email
+  token-confirm:
+    lifetime: 24h
+
+spring:
+  datasource:
+    username: admin
+    driver-class-name: org.postgresql.Driver
+  rabbitmq:
+    username: admin
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+
+  jpa:
+    show-sql: true
+    generate-ddl: false
+
+jwt:
+  token:
+    lifetime: 24h

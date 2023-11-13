@@ -1,0 +1,17 @@
+app:
+  public-host: http://localhost:8080
+
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15432/taskplanner?serverTimezone=UTC
+    password: password
+  rabbitmq:
+    host: localhost
+    password: password
+
+jwt:
+  token:
+    secret: 'P2a3KPYdZruEaxt9hpcf4HmwzwerfvatHcZSksnsakIUHvsFAsdVSS'

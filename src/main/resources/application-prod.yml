@@ -1,0 +1,14 @@
+app:
+  public-host: ${PUBLIC-HOST}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15432/taskplanner?serverTimezone=UTC
+    password: ${DB-PASSWORD}
+  rabbitmq:
+    host: localhost
+    password: ${RMQ-PASSWORD}
+
+jwt:
+  token:
+    secret: ${JWT-SECRET}
