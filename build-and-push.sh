@@ -1,7 +1,7 @@
 #!/bin/bash
 
-IMAGE_NAME="taskplanner-user-service"
-TAG="prod"
+IMAGE_NAME="taskplanner-userservice"
+TAG="v1.0.3"
 DOCKERHUB_NAME="romanv79"
 
 FULL_NAME="${DOCKERHUB_NAME}/${IMAGE_NAME}:${TAG}"
