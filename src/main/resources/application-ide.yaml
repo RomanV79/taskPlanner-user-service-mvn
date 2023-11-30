@@ -1,9 +1,6 @@
 app:
   public-host: http://localhost:8080
 
-server:
-  port: 8085
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:15432/taskplanner?serverTimezone=UTC

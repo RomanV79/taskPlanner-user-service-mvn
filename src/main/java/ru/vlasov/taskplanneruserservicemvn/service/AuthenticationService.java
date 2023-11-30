@@ -68,6 +68,7 @@ public class AuthenticationService {
         var appUser = createAppUser(registrationUserDto);
         try {
             appUserRepository.save(appUser);
+            log.info("User successfully saved in database -> {}", registrationUserDto.getUsername());
         } catch (DataIntegrityViolationException e) {
             if (e.getMostSpecificCause().getClass().getName().equals("org.postgresql.util.PSQLException")
                     && e.getMessage().contains("duplicate key value violates unique constraint")) {
@@ -76,7 +77,9 @@ public class AuthenticationService {
         }
 
         var confirmationToken = confirmationTokenService.createToken(appUser);
+        log.info("Token for user: {} - is produced", registrationUserDto.getUsername());
         producerRabbitService.send(converterDtoService.createConfirmMessageFromConfirmationToken(confirmationToken));
+        log.info("Token for user: {} - sent to rabbitMQ", registrationUserDto.getUsername());
 
         return AuthResponseDto.builder()
                 .token(jwtService.generateToken(new AppUserDetails(appUser)))

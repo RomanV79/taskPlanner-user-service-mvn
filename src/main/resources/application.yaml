@@ -6,6 +6,9 @@ app:
   token-confirm:
     lifetime: 24h
 
+server:
+  port: 8085
+
 spring:
   datasource:
     username: admin
