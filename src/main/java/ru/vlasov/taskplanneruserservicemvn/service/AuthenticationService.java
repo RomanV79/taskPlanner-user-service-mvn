@@ -78,8 +78,12 @@ public class AuthenticationService {
 
         var confirmationToken = confirmationTokenService.createToken(appUser);
         log.info("Token for user: {} - is produced", registrationUserDto.getUsername());
-        producerRabbitService.send(converterDtoService.createConfirmMessageFromConfirmationToken(confirmationToken));
-        log.info("Token for user: {} - sent to rabbitMQ", registrationUserDto.getUsername());
+        try {
+            producerRabbitService.send(converterDtoService.createConfirmMessageFromConfirmationToken(confirmationToken));
+            log.info("Token for user: {} - sent to rabbitMQ", registrationUserDto.getUsername());
+        } catch (Exception e) {
+            log.info("Token for user: {} - DOESN'T sent to rabbitMQ", registrationUserDto.getUsername());
+        }
 
         return AuthResponseDto.builder()
                 .token(jwtService.generateToken(new AppUserDetails(appUser)))
